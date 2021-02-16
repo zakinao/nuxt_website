@@ -1,3 +1,6 @@
+const Sass = require('sass')
+const Fiber = require('fibers')
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -11,12 +14,14 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
+      { rel: 'stylesheet', href: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    "~assets/scss/common.scss"
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -36,5 +41,13 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    loaders: {
+      scss: {
+        implementation: Sass,
+        sassOptions: {
+          fiber: Fiber
+        }
+      }
+    }
   }
 }
